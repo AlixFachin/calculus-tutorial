@@ -1,16 +1,15 @@
 ---
-
+import MainLayout from "../layouts/mainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Calculus Tutorial">
+  <p>
+    Welcome to the calculus tutorial! This is a simple page to help you learn
+    the basics of calculus using JavaScript.
+  </p>
+  <h1>Calculus Tutorial</h1>
+  <p>
+    Hopefully with this you will be able to understand a bit better the basics
+    of calculus. At least that's my ambition!
+  </p>
+</MainLayout>

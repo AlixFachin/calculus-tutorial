@@ -1,0 +1,22 @@
+---
+import Footer from "../components/Footer.astro"
+import "../styles/global.css"
+const { title } = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="bg-blue-900 text-white py-4 flex flex-col items-center justify-center">
+        Learning Calculus with JavaScript!
+    </header>
+    <main>
+        <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
