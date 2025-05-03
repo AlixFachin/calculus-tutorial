@@ -15,9 +15,9 @@ console.log(lessons);
       {
         lessons &&
           lessons.map((lesson) => (
-            <div class="mb-2 bg-amber-100 ">
-                {lesson.data.slug}
-            </div>
+            <li class="mb-2 bg-amber-100 ">
+              <a href={`lessons/${lesson.data.slug}`}>{lesson.data.title}</a>
+            </li>
           ))
       }
     </ul>

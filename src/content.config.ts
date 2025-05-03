@@ -5,12 +5,12 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // 3. Define your collection(s)
-const lessons = defineCollection({ 
-    loader: glob({pattern: '**/*.md', base: './content'}),
-    schema: z.object({
-        title: z.string(),
-        slug: z.string().optional()
-    })
+const lessons = defineCollection({
+  loader: glob({ pattern: ["**/*.mdx", "**/*.md"], base: "./content" }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional(),
+  }),
 });
 
 // 4. Export a single `collections` object to register your collection(s)

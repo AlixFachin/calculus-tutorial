@@ -5,34 +5,32 @@ import { getCollection, getEntry, render } from "astro:content";
 import Prose from "../../components/Prose.astro";
 import MainLayout from "../../layouts/mainLayout.astro";
 
-export const getStaticPaths =   (async () => {
-
-    const lessons = await getCollection("lessons");
-    const paths = lessons.map((lesson) => ({
-        params: { lesson: lesson.data.slug },
-    }));
-    console.log(`Possible paths: ${JSON.stringify(paths)}`);
-    return paths;
-
+export const getStaticPaths = (async () => {
+  const lessons = await getCollection("lessons");
+  const paths = lessons.map((lesson) => ({
+    params: { lesson: lesson.data.slug },
+  }));
+  console.log(`Possible paths: ${JSON.stringify(paths)}`);
+  return paths;
 }) satisfies GetStaticPaths;
 
 const { lesson } = Astro.params;
 if (!lesson) {
-    throw new Error("Lesson not found");
+  throw new Error("Lesson not found");
 }
 const lessonData = await getEntry("lessons", decodeURI(lesson));
 if (!lessonData) {
-    throw new Error(`Lesson Data not found for lesson ${lesson}`);
+  throw new Error(`Lesson Data not found for lesson ${lesson}`);
 }
 
-const {Content} = await render(lessonData);
-
+const { Content } = await render(lessonData);
 ---
+
 <MainLayout title={lessonData.data.title} shouldIncludeKatex>
-    <h1 class="text-4xl my-4">{lessonData.data.title}</h1>
-    <article class="w-4xl bg-blue-200/10 rounded-lg p-4 mb-4">
-        <Prose>
-            <Content />
-        </Prose>
-    </article>
+  <h1 class="text-4xl my-4">{lessonData.data.title}</h1>
+  <article class="w-full max-w-4xl bg-blue-200/10 rounded-lg p-4 mb-4">
+    <Prose>
+      <Content />
+    </Prose>
+  </article>
 </MainLayout>
