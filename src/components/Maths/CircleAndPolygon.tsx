@@ -25,39 +25,49 @@ export const CircleAndPolygon = () => {
 
   return (
     <section className="flex flex-col items-center justify-center">
-    <p className="text-sm italic">Hint: Drag the blue point across the X axis to change the number of sides</p>
-    <div className="flex lg:flex-row lg:justify-stretch items-center flex-col justify-center">
-    <Mafs>
-      <Coordinates.Cartesian />
-      <Polygon points={polygonPoints} color={Theme.blue} />
-      <Circle
-        center={[0, 0]}
-        radius={RADIUS}
-        color={Theme.pink}
-        fillOpacity={0}
-      />
-      {c.element}
-    </Mafs>
-    <div className="bg-amber-300 p-4 rounded-lg shadow-2xl w-full my-2 lg:mx-2">
-        <h3 className="text-lg">Computations</h3>
-        <p className="text-sm italic">Note: values are rounded at 3 significant digits</p>
-        <ul className="my-1">
+      <p className="text-sm italic">
+        Hint: Drag the blue point across the X axis to change the number of
+        sides
+      </p>
+      <div className="flex lg:flex-row lg:justify-stretch items-center flex-col justify-center">
+        <Mafs>
+          <Coordinates.Cartesian />
+          <Polygon points={polygonPoints} color={Theme.blue} />
+          <Circle
+            center={[0, 0]}
+            radius={RADIUS}
+            color={Theme.pink}
+            fillOpacity={0}
+          />
+          {c.element}
+        </Mafs>
+        <div className="bg-amber-300 dark:bg-amber-900 p-4 rounded-lg shadow-2xl w-full my-2 lg:mx-2">
+          <h3 className="text-lg">Computations</h3>
+          <p className="text-sm italic">
+            Note: values are rounded at 3 significant digits
+          </p>
+          <ul className="my-1">
             <li>Number of points: {numberOfPoints}</li>
             <li>Length of one Segment: {segmentLength.toFixed(3)}</li>
-            <li>Polygon length: {(numberOfPoints*segmentLength).toFixed(3)}</li>
-            <li>Circle perimeter: {(2* Math.PI*RADIUS).toFixed(3)}</li>
-            <li className="font-extrabold">Difference: {difference.toFixed(3)}</li>
-        </ul>
-        <p>
+            <li>
+              Polygon length: {(numberOfPoints * segmentLength).toFixed(3)}
+            </li>
+            <li>Circle perimeter: {(2 * Math.PI * RADIUS).toFixed(3)}</li>
+            <li className="font-extrabold">
+              Difference: {difference.toFixed(3)}
+            </li>
+          </ul>
+          <p>
             Question: What do you think will happen when n becomes very large?
-        </p>
-        <p>
-            An interpretation of this is that when you peel a carrot with a peeler,
-            the more angle you apply, the more food you will waste.
-            If you peel only a very small section, you will have to peel many times but you will waste a minimum of carrot.
-        </p>
-    </div>
-    </div>
+          </p>
+          <p>
+            An interpretation of this is that when you peel a carrot with a
+            peeler, the more angle you apply, the more food you will waste. If
+            you peel only a very small section, you will have to peel many times
+            but you will waste a minimum of carrot.
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

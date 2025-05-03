@@ -10,6 +10,7 @@ const lessons = defineCollection({
   schema: z.object({
     title: z.string(),
     slug: z.string().optional(),
+    index: z.number(),
   }),
 });
 

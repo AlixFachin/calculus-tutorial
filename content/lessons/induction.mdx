@@ -1,0 +1,106 @@
+---
+title: Proof by induction
+slug: sequences-2
+index: 2
+---
+import Callout from '../../src/components/Callout.astro'
+
+# About proof by induction
+When we work with new concepts in mathematics, we often start from the basics and then add more and more tools in our toolbox. Or we add recipes to our cookbook, if you prefer.
+One thing very peculiar with sequences is that they are indexed by positive integers. This offers the possibility to use a proof technique called *proof by induction*.
+We use this proof in the following situations:
+<Callout>
+* When we know that a property is true for a certain value to start (very often at $n=0$ or $n=1$), let's call this value $n_0$.
+* When we know that if the property is true for a given value $n$ (ideally $n >= n_0$), then it is also true for the next value $n+1$.
+If the two conditions are satisfied, then we can conclude that the property is true for all values $n >= n_0$.
+</Callout>
+(Note: For those who worked in programming, this is very similar concept to a recursion.)
+
+# Demonstration of the theorem
+## Goal
+In Mathematics we start from some basic properties (called axioms) and then we prove other properties (called theorems),
+which afterwards we can use directly to prove other theorems or properties.
+It's a bit like a craftmen who has to build tools, then with those tools he can build other tools and so on.
+As a maths practitioner, we have to remember all of the tools and choose which one is the best to use for a given problem.
+
+## The Proof
+In order to prove the theorem, we will use a technique called *proof by absurdity*.
+This technique consists in assuming that the theorem is false and then showing that this leads to a contradiction.
+As the contradiction is not true, we can conclude that the theorem is true. (Because if it was false we would have a paradox).
+
+Let's restate the starting assumptions:
+1. The property is true for $n_0$.
+2. We know that if the property is true for any value $n$ bigger than $n_0$, then it is also true for $n+1$.
+The theorem then states that the property is true for all values $n >= n_0$.
+Let's assume that the theorem is false. This means that there exists several values strictly bigger than $n_0$ such that the property is false.
+
+Let's take the smallest value $n_f$ such that the property is false.
+Because we know that $n_f$ is the smallest value such that the property is false, we know that $n_f-1$ is true.
+We can apply the second property of this theorem, which states that if the property is true for $n_f-1$, then it is also true for $n_f-1+1=n_f$.
+But this is a contradiction, because we assumed that the property was false for $n_f$.
+
+So we can conclude that the theorem is true, there is indeed no value $n_f$ strictly bigger than $n_0$ such that the property is false.
+
+And here we are: we have made our first demonstration of this series! 🎉🎉🎉
+
+# Using the theorem
+## First example
+### Preamble
+we will go very slowly in this first example.
+It is very important to understand the mechanics of a mathematics proof.
+* We write very carefully what we know, and what we want to prove.
+* Each time we want to use a theorem:
+    * We have to recall the theorem's necessary conditions
+    * clearly show that they are satisfied, and then apply the theorem.
+    * Recall the theorem's conclusion and apply it to our case to make one step forwards
+* And we repeat the above until we reach our conclusion.
+
+### Let's goooooooo
+We will study a partical case of sequence, called *arithmetic sequence*.
+It is very often defined recursively as $a_{n+1} = a_n + d$, where $d$ is a constant.
+We want to find a direct expression for this sequence.
+In order to get the intuition for a direct expression, let's look at the first few elements:
+* $a_0 = a_0$ ok - thank you captain obvious
+* $a_1 = a_0 + d$
+* $a_2 = a_1 + d = a_0 + d + d = a_0 +2d$
+* $a_3 = a_2 + d = a_2 + d = a_0 + 3d$
+* $a_4 = a_3 + d = a_0 + 4d$
+
+It seems that we can express the sequence as $a_n = a_0 + nd$.
+
+Let's try to prove this by induction.
+1. We know that the property is true for $n=0$, because $a_0 = a_0 + 0d$.
+2. Let's try to prove that if the property is true for $n$, then it is also true for $n+1$.
+
+We know that $a_n = a_0 + nd$. (That's the assumption)
+Let's try to compute $a_{n+1}$:
+* $a_{n+1} = a_n + d$ by definition of the sequence
+* But we know how to express $a_n$ with our assumption, so we can replace it:
+* $a_{n+1} = \lparen a_0 + nd \rparen + d$
+* $a_{n+1} = a_0 + (n+1)d$
+
+And here we are, we have proved that the property is true for $n+1$.
+
+Let's check again the hypothesis of the induction theorem:
+* If a property is true for a given value $n_0$ (_we proved this above in 1._)
+* If a property is true for $n$ then it is also true for $n+1$ (_we proved this above in 2._)
+* Then the induction theorem states that the property is true for all values $n\geq n_0$.
+
+So we can conclude that the property is true for all values of $ n \geq 0$.
+
+## Exercises
+1. Try to prove again the induction theorem, without looking at the proof above.
+It will be a good exercise to understand the induction theorem and the basics mechanics of proof demonstration.
+
+2. Let's look at another example, the *geometric sequence*. It is defined recursively as $a_{n+1} = a_n * r$, where $r$ is a constant.
+
+This is what happens when you have a saving account with a constant interest rate, and you want to see how much money you will have after $n$ years.
+Can you find a direct expression for this sequence? Can you _prove_ that your expression is correct, using the induction theorem?
+
+3. Let's look at another example, the *sum of the first n integers*. It is defined recursively as $S_n = S_{n-1} + n$, where $S_0 = 0$.
+The general formula for this is
+$$
+S_n=\frac{n * (n+1)}{2}
+$$
+Try to compute the first 5 or 6 terms and see if the general expression is correct. 
+Can you _prove_ that your expression is correct, using the induction theorem?

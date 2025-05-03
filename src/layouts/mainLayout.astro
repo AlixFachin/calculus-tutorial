@@ -1,5 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 import "../styles/global.css";
 const { title, shouldIncludeKatex } = Astro.props;
 ---
@@ -19,11 +20,7 @@ const { title, shouldIncludeKatex } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <header
-      class="bg-blue-900 text-white py-4 flex flex-col items-center justify-center"
-    >
-      Learning Calculus with JavaScript!
-    </header>
+    <Header />
     <main class="flex flex-col items-center justify-center py-4">
       <slot />
       <div class="h-8"></div>

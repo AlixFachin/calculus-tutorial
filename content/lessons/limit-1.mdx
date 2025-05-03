@@ -1,0 +1,32 @@
+---
+title: First look at limits
+slug: sequences-3
+index: 3
+---
+
+import Callout from '../../src/components/Callout.astro'
+import InvertLimitGraph from '../../src/components/Maths/InvertLimitGraph.tsx'
+
+# First look at limits
+Now that we have a good understanding of sequences and of induction theorem, we can start to study limits.
+Hopefully understanding limits in a the case of sequences will help us understand limits in the case of functions.
+First we will look at concepts with vague definitions, and then we can move to a more formal definition.
+Using the formal and exact definition of limits will help us really understand this concept.
+
+# Definition
+For a sequence, we mostly want to figure out the behavior of the sequence when $n$ becomes very very large.
+Let's suppose that a sequence $a_n$ is definined for all positive integers $n$.
+We have four cases:
+1. The sequence values can go as high as we want, in this case we say that the sequence diverges to $+\infty$.
+1. The sequence values can go as low as we want, in this case we say that the sequence diverges to $-\infty$.
+1. The sequence values can get very close to a certain value $L$ (an extreme case is when the sequence is actually equal to $L$ after a certain value).
+In this case we say that the sequence converges to $L$.
+1. All the other cases (for example, the sequence oscillates between two values), where we can not say anything about the behavior of the sequence.
+
+# Examples
+* Arithmetic sequences diverge to $+\infty$ or $-\infty$ depending on the sign of $d$.
+* For geometric sequences, if $|r|< 1$, then the sequence converges to $0$. If $r> 1$, then the sequence diverges to $+\infty$ or $-\infty$ depending on the sign of $r$.
+But if $r< -1$, then the sequence doesn't have any limits.
+We can see that in our graphs
+
+<InvertLimitGraph client:only="react" functionType="nolimit" />

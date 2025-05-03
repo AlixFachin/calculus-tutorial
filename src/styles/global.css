@@ -5,6 +5,9 @@
 
 @layer base {
     .prose .katex-display {
-        @apply text-gray-600;
+        @apply text-gray-600 dark:text-white;
+    }
+    .prose .katex {
+        @apply text-gray-600 dark:text-white;
     }
 }
