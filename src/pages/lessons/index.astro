@@ -1,0 +1,25 @@
+---
+import MainLayout from "../../layouts/mainLayout.astro";
+import { getCollection } from "astro:content";
+
+const lessons = await getCollection("lessons");
+console.log(lessons);
+---
+
+<MainLayout title="Calculus Tutorial">
+  <div
+    class="bg-blue-900/10 rounded-lg p-4 mb-4 flex flex-col max-lg:w-full md:w-md sm:w-full"
+  >
+    <h1 class="text-4xl my-4">All Available Lessons</h1>
+    <ul>
+      {
+        lessons &&
+          lessons.map((lesson) => (
+            <div class="mb-2 bg-amber-100 ">
+                {lesson.data.slug}
+            </div>
+          ))
+      }
+    </ul>
+  </div>
+</MainLayout>

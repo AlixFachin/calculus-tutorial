@@ -1,15 +1,39 @@
 ---
 import MainLayout from "../layouts/mainLayout.astro";
+import { getCollection } from "astro:content";
+
+const lessons = await getCollection("lessons");
 ---
 
 <MainLayout title="Calculus Tutorial">
-  <p>
-    Welcome to the calculus tutorial! This is a simple page to help you learn
-    the basics of calculus using JavaScript.
-  </p>
-  <h1>Calculus Tutorial</h1>
-  <p>
-    Hopefully with this you will be able to understand a bit better the basics
-    of calculus. At least that's my ambition!
-  </p>
+  <div
+    class="bg-blue-900/10 rounded-lg p-4 mb-4 flex flex-col max-lg:w-full md:w-md sm:w-full"
+  >
+    <h1 class="text-4xl my-4">Calculus Tutorial</h1>
+    <p>
+      Hopefully with this you will be able to understand a bit better the basics
+      of calculus. At least that's my ambition!
+    </p>
+    <p>
+      Please follow the steps one by one, and try to do the exercises. If you
+      really want to progress, don't ask ChatGPT and don't google the answers.
+      Try to solve them by yourself.
+    </p>
+    <h2 class="text-2xl mb-2">Table of contents</h2>
+    <ul>
+      {
+        lessons &&
+          lessons.map((lesson) => (
+            <li class="mb-2">
+              <a
+                href={`lessons/${lesson.id}`}
+                class="text-blue-900 hover:underline"
+              >
+                {lesson.data.title || "title unknown"}
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </div>
 </MainLayout>

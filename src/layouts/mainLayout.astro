@@ -1,21 +1,31 @@
 ---
-import Footer from "../components/Footer.astro"
-import "../styles/global.css"
-const { title } = Astro.props
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+const { title, shouldIncludeKatex } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {
+      shouldIncludeKatex && (
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+        />
+      )
+    }
     <title>{title}</title>
   </head>
   <body>
-    <header class="bg-blue-900 text-white py-4 flex flex-col items-center justify-center">
-        Learning Calculus with JavaScript!
+    <header
+      class="bg-blue-900 text-white py-4 flex flex-col items-center justify-center"
+    >
+      Learning Calculus with JavaScript!
     </header>
-    <main>
-        <slot />
+    <main class="flex flex-col items-center justify-center py-4">
+      <slot />
     </main>
     <Footer />
   </body>
