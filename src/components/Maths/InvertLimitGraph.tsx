@@ -68,7 +68,7 @@ export const InvertLimitGraph = () => {
       </div>
       <p>{explanation_lookup[currentVariant]}</p>
       <div className="flex items-center flex-col justify-center w-[90%]">
-        <Mafs viewBox={viewBox_lookup[currentVariant]}>
+        <Mafs viewBox={viewBox_lookup[currentVariant]} zoom={true}>
           <Coordinates.Cartesian />
           {points.map((point, i) => (
             <Point x={point[0]} y={point[1]} key={i} color={Theme.blue} />

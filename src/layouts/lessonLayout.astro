@@ -1,0 +1,22 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import { getNeighboursSlugsForLessonId } from "../lib/lessonHelpers";
+import MainLayout from "./mainLayout.astro";
+
+const { title, currentLessonIndex } = Astro.props;
+const { previousLessonSlug, nextLessonSlug } =
+  await getNeighboursSlugsForLessonId(currentLessonIndex);
+
+
+
+---
+
+<MainLayout title={title} shouldIncludeKatex={true}>
+  <slot />
+  <div>
+    <div class="flex justify-between">
+      <ButtonLink enabled={!!previousLessonSlug} href={`/lessons/${previousLessonSlug}`} label="Previous Lesson" />
+      <ButtonLink enabled={!!nextLessonSlug} href={`/lessons/${nextLessonSlug}`} label="Next Lesson" />
+    </div>
+  </div>
+</MainLayout>

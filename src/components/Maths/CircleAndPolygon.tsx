@@ -30,7 +30,7 @@ export const CircleAndPolygon = () => {
         sides
       </p>
       <div className="flex lg:flex-row lg:justify-stretch items-center flex-col justify-center">
-        <Mafs>
+        <Mafs pan={false}>
           <Coordinates.Cartesian />
           <Polygon points={polygonPoints} color={Theme.blue} />
           <Circle
