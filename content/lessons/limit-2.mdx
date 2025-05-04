@@ -1,0 +1,117 @@
+---
+title: Theoretical look at limits
+slug: sequences-limit-2
+index: 4
+---
+
+import Callout from '../../src/components/Callout.astro'
+import Hint from '../../src/components/Hint.astro'
+import InvertLimitGraph from '../../src/components/Maths/InvertLimitGraph.tsx'
+
+# Theoretical framework around limits
+First we will look at the definition of limits and we will try out a few proof to see how it works.
+In practice we never come back to the actual definition, but we use theorems and properties derived from that.
+We will see in a next lesson a few of those properties, how to prove them and how to use them.
+
+# Convergence Definition
+## The theory
+Let's look at the case of a finite limit - we will deal with infinity later.
+<Callout>
+We say that a sequence $a_n$ converges to a limit $L$ if:
+* for any $\epsilon > 0$, there exists an integer $N$ such that for all $n > N$, we have $|a_n - L| < \epsilon$.
+</Callout>
+(By the way, the symbol $\epsilon$ is the Greek letter "epsilon", and it is often used in mathematics
+to denote a small positive number. Epsilon is kinda the ancester of the letter "e" in the Latin alphabet, but I digress.)
+
+Ouch. That's quite a mouthful.
+Let's try to understand this definition.
+The overall idea is that we need to give a meaning to the phrase "getting as close as we want to $L$".
+
+So let's imagine two mathematicians looking at the proof, let's call them Alice and Bob. <br />
+Bob will be convinced that the sequence converges to $L$ if, each time he gives Alice a number $\epsilon$, Alice can
+find a number $N$ such that "the sequence is closer than Epsilon" for all $n > N$. In mathematical terms,
+that would be when we have $|a_n - L| < \epsilon$.
+
+Their dialogue would look like this:
+* Bob: "Can you find a rank after which the sequence is closer than 1 to $L$?"
+* Alice: "Sure, here it is."
+* Bob: "Ok, well done. Hmmm - what about closer than 0.1?"
+* Alice: "Give me a second... Here it is."
+* Bob: "Wow - okay not bad. Can you do it for 0.000000001?"
+* Alice: "Sure, here is one"
+
+If Alice can do this for **any** $\epsilon$, then Bob is convinced that the sequence converges to $L$.
+This is the idea behind the definition of convergence.
+
+<Hint>
+Generally, when a definition calls for "there exists" a certain value, we will have to "build" one value according to the 
+other values or parameters we have laying around. <br/>
+Try to remember this recipe each time you see "there exists" in a definition or a problem.
+</Hint>
+
+## How it goes with an example
+Let's look at the sequence $a_n = \frac{1}{n}$.
+We would like to prove that the limit of this sequence is $0$.
+Let's look at some cases first, like in the discussion between Alice and Bob - and we will play the role of Alice.
+* Bob: "Can you find a rank after which the sequence is closer than 0.1 to $0$?"
+Alice has to find a rank $N$ such that for all $n > N$, we have $|a_n - 0| < 1$.
+* Let's try $N = 1$.
+* $|a_1 - 0| = |1 - 0| = 1$ - not good enough.
+* Let's try $N = 2$.
+* $|a_2 - 0| = |0.5 - 0| = 0.5$ - not good enough but getting closer.
+A quick work of algebra will show us that for $N = 10$, we have $|a_{10} - 0| = |0.1 - 0| = 0.1$.
+Now Alice has to prove that for every $N > 10$, we have $|a_n - 0| < 0.1$.
+I will leave this aside for now as we will have to do something really similar for the general case.
+
+Generally speaking we can try a few values of $\epsilon$ to get a feel for the way we can "build" the value of $N$.
+Let's look at the general example.
+Bob asks us to find a rank $N_0$ such that for all $n > N_0$, we have $|a_n - 0| < \epsilon$.
+Please note that we are looking for one of such $N_0$ - we don't have to find the minimum or anything like that.
+Just find one which works!
+We have $a_n = \frac{1}{n}$, so $a_n < \epsilon$ is equivalent to:
+* $\frac{1}{n} < \epsilon$.
+When we invert both sides of the inequality, we have to reverse the sign of the inequality:
+* $n > \frac{1}{\epsilon}$.
+Now we have a good candidate for $N_0$, we have to prove that the sequences stays close to the limit for every rank above $N_0$.
+
+If $N > N_0$, then we have $\frac{1}{N} < \frac{1}{N_0}$. <br />
+We know that $\frac{1}{N_0} < \epsilon$, so we have $\frac{1}{N} < \epsilon$.
+
+Here we go, we have proved that for every arbitrary $\epsilon$, we can find a rank $N_0$ such that the sequence is closer than $\epsilon$ for all ranks above $N_0$.
+So we can say that the limit of the sequence $a_n = \frac{1}{n}$ is $0$.
+
+# Infinite limit definition
+## The theory
+The theory is a similar idea than the one above. But instead of proving that the sequence is "closer" to the limit, we need to prove
+that the sequence becomes "bigger" than any arbitrary number after a certain rank.
+
+<Callout>
+We say that a sequence $a_n$ has for limit $+\infty$ if:
+* for any $K > 0$, there exists an integer $N_0$ such that for all $n > N_0$, we have $a_n > K$.
+</Callout>
+
+Here again we have to prove the existence of a certain number, so we will need to build it according to the value of $K$.
+
+## How it goes with an example
+Let's look at the sequence $a_n = n^2$.
+We would like to prove that the limit of this sequence is $+\infty$.
+
+Let's look at some cases first, like in the discussion between Alice and Bob.
+Can we go higher than, say, $100$?<br />
+Well, for $N=10$ we have $a_{10} = 100$.<br />
+We know as well that if $a > b > 0$, then $a^2 > b^2$.
+So we can say that for $N > 10$, we have $a_N = N^2 > 100$.
+
+Looking at the general case, let's look at a given $K$.
+We have to find a rank $N_0$ such that for all $n > N_0$, we have $a_n > K$.
+We have $a_n = n^2$, so $n^2 > K$ is equivalent to: <br />
+$n > \sqrt{K}$.
+
+So we can take any $N_0$ bigger than $\sqrt{K}$, and we are done.
+Every $n > N_0$ will have $n^2 > N_0^2$ and we know that $N_0^2 > K$.
+So we can say that for every $ n > N_0$, we have $a_n > K$.
+We have proved that the limit of the sequence $a_n = n^2$ is $+\infty$.
+
+## The negative case
+Having a limit of $-\infty$ is the same idea, but we have to prove that the sequence is smaller than any arbitrary number after a certain rank.
+
