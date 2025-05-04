@@ -3,6 +3,9 @@ import MainLayout from "../layouts/mainLayout.astro";
 import { getCollection } from "astro:content";
 
 const lessons = await getCollection("lessons");
+if (lessons && lessons.length > 0) {
+  lessons.sort((a, b) => a.data.index - b.data.index);
+}
 ---
 
 <MainLayout title="Calculus Tutorial">
@@ -20,7 +23,7 @@ const lessons = await getCollection("lessons");
       Try to solve them by yourself.
     </p>
     <h2 class="text-2xl mb-2">Table of contents</h2>
-    <ul>
+    <ol class="list-decimal list-inside">
       {
         lessons &&
           lessons.map((lesson) => (
@@ -34,6 +37,6 @@ const lessons = await getCollection("lessons");
             </li>
           ))
       }
-    </ul>
+    </ol>
   </div>
 </MainLayout>
